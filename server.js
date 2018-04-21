@@ -1,0 +1,51 @@
+// Get dependencies
+const express = require('express');
+const path = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+// Parsers for POST data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// error handling middleware
+app.use((err, req, res, next) => {
+    res.status(422).send({ error: err.message })
+})
+
+/**
+ * Get port from environment and store in Express.
+ */
+const PORT = process.env.PORT || '3000';
+app.set('port', PORT);
+
+// Requiring our models for syncing
+var db = require("./server/models");
+var initValues = require("./server/data/initialData.js");
+
+// Import routes and give the server access to them.
+require("./server/routes/api-routes-insert.js")(app);
+require("./server/routes/api-routes-read.js")(app);
+require("./server/routes/api-routes-delete.js")(app);
+require("./server/routes/api-routes-update.js")(app);
+require("./server/routes/html-routes.js")(app);
+
+// error handling middleware
+app.use(function (err, req, res, next) {
+    res.json({ 
+        error: 422,
+        message: err.toString()
+    });
+})
+
+db.sequelize.sync({ force: true }).then(function () {
+    initValues();
+    app.listen(PORT, function () {
+        console.log("App listening on PORT " + PORT);
+    });
+})
