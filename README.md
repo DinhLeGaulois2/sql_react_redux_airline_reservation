@@ -3,7 +3,12 @@
 ---
 
 ## Aim
-Building a project based on an EER (Enhanced Entity-Relationship). The whole 3-Tier Architecture is done!
+* Building a project based on an EER (Enhanced Entity-Relationship). The whole 3-Tier Architecture is done!
+* **Transaction** is used to ensure that if the WHOLE processus (**insert**, **update** and **delete**) is NOT successful then NOTHING will be done (**Rollback** function will take care of it).
+* The **insertion** of a **booking** is very complex:
+   - request information from all **collection**
+   - setup a very complex **formular** to get data in some order
+   - insertion - using **transaction** - to be sure that the insertion is successful for the WHOLE processus
 
 ---------------
 
@@ -28,10 +33,13 @@ Building a project based on an EER (Enhanced Entity-Relationship). The whole 3-T
 
 ## Execution
 
-> 1 - Create a database name 'airline_reservation'
-> 2 - Execute (on the application's root folder): **npm install** (to install **dependencies**)
-> 3 - Execute (on the application's root folder): **npm run build** (to run the **server**)
-> 4 - Open your web browser (Firefox, Chrome, etc.) then, enter: **localhost:3000**
+> 1 - Create a database name 'airline_reservation'<br/>
+
+> 2 - Execute (on the application's root folder): **npm install** (to install **dependencies**)<br/>
+
+> 3 - Execute (on the application's root folder): **npm run build** (to run the **server**)<br/>
+
+> 4 - Open your web browser (Firefox, Chrome, etc.) then, enter: **localhost:3000**<br/>
 
 ---------------
 
