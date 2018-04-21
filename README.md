@@ -1,9 +1,9 @@
 # Airline Reservation
-# (This is rather a React-Redux Architecture. Will Use ReactJS after finishing the React-Redux ...)
+
 ---
 
 ## Aim
-Building a project based on an EER (Enhanced Entity-Relationship).
+Building a project based on an EER (Enhanced Entity-Relationship). The whole 3-Tier Architecture is done!
 
 ---------------
 
@@ -23,6 +23,15 @@ Building a project based on an EER (Enhanced Entity-Relationship).
 
 ### Add New Passenger
 ![alt text](assets/img/addPassenger.jpg)
+
+---------------
+
+## Execution
+
+> 1 - Create a database name 'airline_reservation'
+> 2 - Execute (on the application's root folder): **npm install** (to install **dependencies**)
+> 3 - Execute (on the application's root folder): **npm run build** (to run the **server**)
+> 4 - Open your web browser (Firefox, Chrome, etc.) then, enter: **localhost:3000**
 
 ---------------
 
