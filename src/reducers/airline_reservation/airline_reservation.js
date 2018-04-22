@@ -2,31 +2,18 @@ import cst from '../../constants/airline_reservation/cst'
 
 const initialStates = {
     data: [],
-    activeId: 0,
-    category: 0,
-    previousStatus: cst.ADD_FLIGHT,
     status: cst.ADD_FLIGHT,
     menuStatus: cst.MENU_NEUTRAL
 }
 
 const reservation = (state = initialStates, action) => {
     switch (action.type) {
-        // case cst.ADD_AIRPLANE: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
         case cst.ADD_BOOKING: { // Information preload for the formular
             return Object.assign({}, state, {
                 data: action.payload,
                 status: action.type
             })
         }
-        // case cst.ADD_FLIGHT: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
         case cst.ADD_PASSENGER: {
             return Object.assign({}, state, {
                 status: action.type
@@ -42,11 +29,6 @@ const reservation = (state = initialStates, action) => {
                 status: action.ADD_PASSENGER
             })
         }
-        // case cst.DELETE_BOOKING_BY_ID: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
         case cst.GET_BOOKINGS: { // Information preload for the formular
             return Object.assign({}, state, {
                 data: action.payload,
@@ -70,21 +52,6 @@ const reservation = (state = initialStates, action) => {
                 status: action.type
             })
         }
-        // case cst.GET_FLIGHT_INFO: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
-        // case cst.GET_INFO_4_BOOKING: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
-        // case cst.GET_PASSENGER_BY_ID: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
         case cst.GET_PASSENGERS_SUCCESS: {
             return Object.assign({}, state, {
                 data: action.payload.data,
@@ -106,11 +73,6 @@ const reservation = (state = initialStates, action) => {
                 menuStatus: action.type
             })
         }
-        // case cst.UPDATE_BOOKING_STATUS: {
-        //     return Object.assign({}, state, {
-        //         data: action.payload
-        //     })
-        // }
     }
     return state;
 }
