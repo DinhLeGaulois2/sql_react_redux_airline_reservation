@@ -12,7 +12,7 @@
 
 ## Technologies
 > * **Front End**: ***React-Redux***
-> * **Back End**: ***Express/Node.js*** + ***Sequelize** (ORM)
+> * **Back End**: ***Express/Node.js*** + ***Sequelize*** (ORM)
 > * **Database**: ***mySQL***
 
 ---------------
