@@ -33,7 +33,7 @@
 
 ## Execution
 
-> 1 - Create a database name 'airline_reservation'<br/>
+> 1 - Create a database name 'airline_reservation' (enter the password of YOUR database. Instruction in this file [here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server/models/index.js)).<br/>
 
 > 2 - Execute (on the application's root folder): **npm install** (to install **dependencies**)<br/>
 
