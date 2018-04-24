@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import '../../style.scss'
+
 import cst from '../../constants/airline_reservation/cst'
 
 import AddUIContainer from '../../containers/airline_reservation/AddUIContainer'

@@ -1,13 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import '../../style.scss'
+
 import Modal from '../../common/modal/modal'
 
 import cst from '../../constants/airline_reservation/cst'
 
 const DisplayABooking = ({ id, bookingDate, passenger, travelClass, flight, bookingStatus, ticketType, payments, onClickDelete }) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
-        <p><b>Booking Id</b>: {id}</p>
+        <div className="relative">
+            <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {id}</h3>
+            <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
+                e.preventDefault()
+                onClickDelete(id)
+            }}>X</button>
+        </div>
         <p><b>Booking Date</b>: {bookingDate}</p>
 
         <table style={{ 'width': '100%' }}><tbody>
@@ -37,12 +45,6 @@ const DisplayABooking = ({ id, bookingDate, passenger, travelClass, flight, book
             <li><b>Status</b>: {payments[0].paymentStatus.paymentStatusCode}</li>
             <li><b>Method</b>: {payments[0].paymentMethod.paymentMethodCode}</li>
         </ul>
-        <hr />
-        <p align="center"><button type="button" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
-                e.preventDefault()
-                onClickDelete(id)
-            }}>Delete</button>
-        </p>
     </td >
 
 const DisplayBookingListComponent = ({ bookings, onClickNewBooking, onClickDelete }) => (
@@ -115,7 +117,7 @@ DisplayABooking.propTypes = {
         paymentMethod: PropTypes.shape({
             paymentMethodCode: PropTypes.string
         })
-    })), 
+    })),
     onClickDelete: PropTypes.func.isRequired
 }
 

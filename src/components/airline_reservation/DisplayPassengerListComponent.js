@@ -1,19 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import '../../style.scss'
+
 import Modal from '../../common/modal/modal'
 
 import cst from '../../constants/airline_reservation/cst'
 
 const DisplayAPassenger = ({ id, firstName, lastName, phone, email, address, zipcode, state, city, country, onClickDelete }) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
-        <p>
-        <button type="button" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
+        <div className="relative">
+            <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {id}</h3>
+            <button type="button" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
                 onClickDelete(id)
-            }}>Delete</button>
-        </p>
-        <p><b>Client Id</b>: {id}</p>
+            }}>X</button>
+        </div>
         <p><b>Name</b>: {firstName} {lastName}</p>
         <p><b>Phone</b>: {phone}</p>
         <p><b>Email</b>: {email}</p>
