@@ -11,7 +11,7 @@ const DisplayAPassenger = ({ id, firstName, lastName, phone, email, address, zip
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
         <div className="relative">
             <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {id}</h3>
-            <button type="button" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
+            <button type="button" className="btnDelete"  style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
                 onClickDelete(id)
             }}>X</button>
