@@ -6,6 +6,8 @@ import cst from '../../constants/airline_reservation/cst'
 import AddBookingContainer from '../../containers/airline_reservation/AddBookingContainer'
 import AddPassengerContainer from '../../containers/airline_reservation/AddPassengerContainer'
 
+import '../../style.scss'
+
 const AddUIComponent = ({ status, menuStatus, onClickAddBooking, onClickAddPassenger }) => (
     <div style={{ 'backgroundColor': 'gray' }}>
         <table align="center" style={{ 'backgroundColor': 'black', 'width': '100%' }}><tbody><tr><td align="center">

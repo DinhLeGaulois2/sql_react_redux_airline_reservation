@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 
 import cst from '../../constants/airline_reservation/cst'
 
+import '../../style.scss'
+
 import { renderInputField, renderTextareaField } from '../../common/reduxForm/renderField'
 
 
@@ -68,8 +70,8 @@ let AddPassengerComponent = ({ handleSubmit, invalid, submitting, reset, onClick
                 <Field name="country" component={renderInputField} placeholder="Country" />
             </div>
             <br /><br />
-            <p align="center"><button type="submit" className="btnSubmit" disabled={invalid || submitting}>Submit</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" className="btnSubmit" disabled={submitting} onClick={reset}>Clear Values</button>
+            <p align="center"><button type="submit" className="btn" disabled={invalid || submitting}>Submit</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" className="btn" disabled={submitting} onClick={reset}>Clear Values</button>
             </p><br/>
         </form>
     </div>
