@@ -110,8 +110,6 @@ const reservationAction = {
                         .then(data => {
                             let anArray = [];
                             anArray.push(data.data)
-                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                            console.log("Preload before booking, data: " + JSON.stringify(anArray, null, 5))
                             dispatch({
                                 type: cst.ADD_BOOKING,
                                 payload: anArray
