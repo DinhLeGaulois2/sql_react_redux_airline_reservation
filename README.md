@@ -1,6 +1,6 @@
 # Airline Reservation
 
-# [Project will be upgraded: Authentication will be set up for SERVER, DATABASE and UI to protect every "route" that need protection]
+# [Project will be upgraded: Authentication will be set up for SERVER, DATABASE and UI to protect every "route" that needs protection]
 
 ## Aim
 Building a project based on an EER (Enhanced Entity-Relationship). The goal is to learn to build project base on someone's idea, which is much more difficult than with ours.
