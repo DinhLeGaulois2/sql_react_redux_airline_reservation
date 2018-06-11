@@ -105,7 +105,7 @@ const reservationAction = {
         return dispatch => {
             if (mainStatus.length > 0) dispatch({ type: mainStatus })
             if (actionStatus.length > 0) {
-                if (actionStatus === cst.ADD_BOOKING) {
+                if (actionStatus == cst.ADD_BOOKING) {
                     axios.get("/api/get/info4Booking")
                         .then(data => {
                             let anArray = [];

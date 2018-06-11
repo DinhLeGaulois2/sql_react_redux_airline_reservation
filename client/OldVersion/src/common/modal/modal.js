@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import store from '../../index'
+import store from '../../store'
 import { Provider } from 'react-redux'
 require('./modalStyle.scss')
 

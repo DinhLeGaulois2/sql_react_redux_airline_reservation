@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { reduxForm, Field, reset } from 'redux-form'
-import { compose } from 'redux'
-import actions from '../../actions/airline_reservation/reservationAction'
+import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
+import PropTypes from 'prop-types'
+
+import cst from '../../constants/airline_reservation/cst'
 
 import '../../style.scss'
 
-import { renderInputField } from '../../common/reduxForm/renderField'
+import { renderInputField, renderTextareaField } from '../../common/reduxForm/renderField'
 
 
 const validate = values => {
@@ -41,7 +42,7 @@ const validate = values => {
     return errors
 }
 
-let AddPassengerComponent = ({ handleSubmit, invalid, submitting, reset }) => (
+let AddPassengerComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddPassenger }) => (
     <div className="container" style={{ 'backgroundColor': 'white' }}>
         <div align="center" className="mainTitle" style={{
             'backgroundColor': 'black',
@@ -56,7 +57,7 @@ let AddPassengerComponent = ({ handleSubmit, invalid, submitting, reset }) => (
         }}>Add New Passenger</div>
         <p align="center">[<b><i>Fields with (<font color="red">*</font>) are required</i></b>]</p>
         <hr/>
-        <form onSubmit={handleSubmit(this.props.onClickAddPassenger)}>
+        <form onSubmit={handleSubmit(onClickAddPassenger)}>
             <div>
                 <Field name="firstName" component={renderInputField} placeholder="First Name" /><br />
                 <Field name="lastName" component={renderInputField} placeholder="Last Name" /><br />
@@ -76,15 +77,18 @@ let AddPassengerComponent = ({ handleSubmit, invalid, submitting, reset }) => (
     </div>
 )
 
+AddPassengerComponent.propTypes = {
+    onClickAddPassenger: PropTypes.func.isRequired
+};
+
 // Reset the form after submission
 const afterSubmit = (result, dispatch) =>
     dispatch(reset('airlineAddPassengerForm'));
 
-export default compose(
-    connect(null, actions),
-    reduxForm({
-        form: 'airlineAddPassengerForm',
-        validate,
-        onSubmitSuccess: afterSubmit
-    }),
-)(AddPassengerComponent)
+AddPassengerComponent = reduxForm({
+    form: 'airlineAddPassengerForm',
+    validate,
+    onSubmitSuccess: afterSubmit
+})(AddPassengerComponent)
+
+export default AddPassengerComponent

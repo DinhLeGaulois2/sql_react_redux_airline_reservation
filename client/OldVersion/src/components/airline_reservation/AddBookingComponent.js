@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
-import { compose } from 'redux'
-import actions from '../../actions/airline_reservation/reservationAction'
+import PropTypes from 'prop-types'
+import { renderInputField, renderTextareaField } from '../../common/reduxForm/renderField'
 
 import '../../style.scss'
 
@@ -27,7 +27,7 @@ const validate = values => {
     return errors
 }
 
-let AddBookingComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddBooking,
+let AddBookingComponent = ({ data, handleSubmit, invalid, submitting, reset, onClickAddBooking,
     flightIndex, classSeatCapacitiesCheck, ticketTypeCheck, paymentMethodCheck, selectAPassengerIndex }) => (
         <div>
             <div className="container" style={{ 'backgroundColor': 'white' }}>
@@ -44,13 +44,13 @@ let AddBookingComponent = ({ handleSubmit, invalid, submitting, reset, onClickAd
                 }}>Add New Booking</div>
             </div>
             <br />
-            <form onSubmit={handleSubmit(this.props.onClickAddBooking)}>
+            <form onSubmit={handleSubmit(onClickAddBooking)}>
                 <div>
                     {!selectAPassengerIndex &&
                         <div>
                             <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}><font color="blue">Please, Select A Passenger</font></h3>
                             <table align="center" style={{ 'width': '80%' }}><tbody>
-                                {this.props.data[0].passengers.map((p, index) =>
+                                {data[0].passengers.map((p, index) =>
                                     <tr key={index}>
                                         <td>
                                             <Field name="passengerIndex" component="input" type="radio" value={index} />
@@ -70,9 +70,9 @@ let AddBookingComponent = ({ handleSubmit, invalid, submitting, reset, onClickAd
                         <div>
                             {!flightIndex &&
                                 <div>
-                                    <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}><b>Passenger</b>: {this.props.data[0].passengers[selectAPassengerIndex].firstName} {this.props.data[0].passengers[selectAPassengerIndex].lastName}</h3>
+                                    <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}><b>Passenger</b>: {data[0].passengers[selectAPassengerIndex].firstName} {data[0].passengers[selectAPassengerIndex].lastName}</h3>
                                     <table align="center" style={{ 'width': '80%', 'backgroundColor': 'white', 'color': 'black' }}><tbody>
-                                        {this.props.data[0].flight.map((fl, index) =>
+                                        {data[0].flight.map((fl, index) =>
                                             <tr key={index}><td style={{ 'padding': '10px', 'border': 'solide' }}><Field name="flightIndex" component="input" type="radio" value={index} /> <b>Flight</b>: {fl.flightNumber}
                                                 <ul>
                                                     <li><b>Destination</b>: {fl.destination}</li>
@@ -80,7 +80,7 @@ let AddBookingComponent = ({ handleSubmit, invalid, submitting, reset, onClickAd
                                                     <li><b>Arrival</b>: {fl.arrivalTime}</li>
                                                     <li><b>Aircraft</b>: {fl.airplane.aircraftType}</li>
                                                     <li><b>Seat Capacities</b>:
-                                                        <ul>
+                                                <ul>
                                                             <li>Class <b>{fl.classSeatCapacities[0].travelClass.travelClassCode}</b>:
                                                             {fl.classSeatCapacities[0].seatCapacity}
                                                             </li>
@@ -101,49 +101,49 @@ let AddBookingComponent = ({ handleSubmit, invalid, submitting, reset, onClickAd
                             }
                             {flightIndex &&
                                 <div>
-                                    <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}><b>Passenger</b>: {this.props.data[0].passengers[selectAPassengerIndex].firstName} {this.props.data[0].passengers[selectAPassengerIndex].lastName}</h3>
+                                    <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}><b>Passenger</b>: {data[0].passengers[selectAPassengerIndex].firstName} {data[0].passengers[selectAPassengerIndex].lastName}</h3>
                                     <table align="center" style={{ 'width': '80%' }}><tbody><tr><td>
                                         <table align="center"><tbody><tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px', 'borderRadius': '20px' }}>
-                                            <b>Flight Number</b>: {this.props.data[0].flight[flightIndex].flightNumber}<br />
-                                            <b>Destination</b>: {this.props.data[0].flight[flightIndex].destination}<br />
-                                            <b>Departure</b>: {this.props.data[0].flight[flightIndex].departureTime}<br />
-                                            <b>Arrival</b>: {this.props.data[0].flight[flightIndex].arrivalTime}<br />
-                                            <b>Aircraft</b>: {this.props.data[0].flight[flightIndex].airplane.aircraftType}
+                                            <b>Flight Number</b>: {data[0].flight[flightIndex].flightNumber}<br />
+                                            <b>Destination</b>: {data[0].flight[flightIndex].destination}<br />
+                                            <b>Departure</b>: {data[0].flight[flightIndex].departureTime}<br />
+                                            <b>Arrival</b>: {data[0].flight[flightIndex].arrivalTime}<br />
+                                            <b>Aircraft</b>: {data[0].flight[flightIndex].airplane.aircraftType}
                                         </td></tr>
                                         </tbody></table>
                                         <br />
                                         {!classSeatCapacitiesCheck &&
                                             <table align="center" style={{ 'width': '80%' }}><tbody><tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}><b>Travel Class</b></td></tr>
                                                 <tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}>
-                                                    &nbsp;&nbsp;&nbsp;<Field name="classSeatCapacitiesIndex" component="input" type="radio" value="0" /> {this.props.data[0].flight[flightIndex].classSeatCapacities[0].travelClass.travelClassCode}
-                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="classSeatCapacitiesIndex" component="input" type="radio" value="1" /> {this.props.data[0].flight[flightIndex].classSeatCapacities[1].travelClass.travelClassCode}
-                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="classSeatCapacitiesIndex" component="input" type="radio" value="2" /> {this.props.data[0].flight[flightIndex].classSeatCapacities[2].travelClass.travelClassCode}
+                                                    &nbsp;&nbsp;&nbsp;<Field name="classSeatCapacitiesIndex" component="input" type="radio" value="0" /> {data[0].flight[flightIndex].classSeatCapacities[0].travelClass.travelClassCode}
+                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="classSeatCapacitiesIndex" component="input" type="radio" value="1" /> {data[0].flight[flightIndex].classSeatCapacities[1].travelClass.travelClassCode}
+                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="classSeatCapacitiesIndex" component="input" type="radio" value="2" /> {data[0].flight[flightIndex].classSeatCapacities[2].travelClass.travelClassCode}
                                                 </td></tr>
                                             </tbody></table>
                                         }
-                                        {classSeatCapacitiesCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Travel Class Selected: <b>{this.props.data[0].flight[flightIndex].classSeatCapacities[classSeatCapacitiesCheck].travelClass.travelClassCode}</b></h3>}
+                                        {classSeatCapacitiesCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Travel Class Selected: <b>{data[0].flight[flightIndex].classSeatCapacities[classSeatCapacitiesCheck].travelClass.travelClassCode}</b></h3>}
                                         <br />
                                         {!ticketTypeCheck &&
                                             <table align="center" style={{ 'width': '80%' }}><tbody><tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}><b>Ticket Type</b></td></tr>
                                                 <tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}>
-                                                    &nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="0" /> {this.props.data[0].ticketType[0].ticketTypeCode}
-                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="1" /> {this.props.data[0].ticketType[1].ticketTypeCode}
-                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="2" /> {this.props.data[0].ticketType[2].ticketTypeCode}
-                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="3" /> {this.props.data[0].ticketType[3].ticketTypeCode}
+                                                    &nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="0" /> {data[0].ticketType[0].ticketTypeCode}
+                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="1" /> {data[0].ticketType[1].ticketTypeCode}
+                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="2" /> {data[0].ticketType[2].ticketTypeCode}
+                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="ticketTypeIndex" component="input" type="radio" value="3" /> {data[0].ticketType[3].ticketTypeCode}
                                                 </td></tr>
                                             </tbody></table>
                                         }
-                                        {ticketTypeCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Ticket Type Selected: <b>{this.props.data[0].ticketType[ticketTypeCheck].ticketTypeCode}</b></h3>}
+                                        {ticketTypeCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Ticket Type Selected: <b>{data[0].ticketType[ticketTypeCheck].ticketTypeCode}</b></h3>}
                                         <br />
                                         {!paymentMethodCheck &&
                                             < table align="center" style={{ 'width': '80%' }}> <tbody><tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}><b>Payment Method</b></td></tr>
                                                 <tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}>
-                                                    &nbsp;&nbsp;&nbsp;<Field name="paymentMethodIndex" component="input" type="radio" value="0" /> {this.props.data[0].paymentMethod[0].paymentMethodCode}
-                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="paymentMethodIndex" component="input" type="radio" value="1" /> {this.props.data[0].paymentMethod[1].paymentMethodCode}
+                                                    &nbsp;&nbsp;&nbsp;<Field name="paymentMethodIndex" component="input" type="radio" value="0" /> {data[0].paymentMethod[0].paymentMethodCode}
+                                                    <br />&nbsp;&nbsp;&nbsp;<Field name="paymentMethodIndex" component="input" type="radio" value="1" /> {data[0].paymentMethod[1].paymentMethodCode}
                                                 </td></tr>
                                             </tbody></table>
                                         }
-                                        {paymentMethodCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Payment Method Selected: <b>{this.props.data[0].paymentMethod[paymentMethodCheck].paymentMethodCode}</b></h3>}
+                                        {paymentMethodCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Payment Method Selected: <b>{data[0].paymentMethod[paymentMethodCheck].paymentMethodCode}</b></h3>}
                                     </td></tr>
                                     </tbody></table>
                                 </div>
@@ -159,13 +159,56 @@ let AddBookingComponent = ({ handleSubmit, invalid, submitting, reset, onClickAd
         </div>
     )
 
-const mapStateToProps = (state) => ({
-    data: state.booking.data,
-})
+AddBookingComponent.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({
+        flight: PropTypes.arrayOf(PropTypes.shape({
+            flightNumber: PropTypes.string,
+            destination: PropTypes.string,
+            departureTime: PropTypes.date,
+            arrivalTime: PropTypes.date,
+            airplane: PropTypes.shape({
+                aircraftType: PropTypes.string
+            }),
+            classSeatCapacities: PropTypes.arrayOf(PropTypes.shape({
+                id: PropTypes.number,
+                seatCapacity: PropTypes.number,
+                travelClassId: PropTypes.number,
+                price: PropTypes.number,
+                travelClass: PropTypes.shape({
+                    id: PropTypes.number,
+                    travelClassCode: PropTypes.string
+                })
+            }))
+        })),
+        bookingStatus: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number,
+            bookingStatusCode: PropTypes.string
+        })),
+        ticketType: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number,
+            ticketTypeCode: PropTypes.string
+        })),
+        paymentMethod: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number,
+            paymentMethodCode: PropTypes.string
+        })),
+        paymentStatus: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number,
+            paymentStatusCode: PropTypes.string
+        })),
+    })),
+    onClickAddBooking: PropTypes.func.isRequired
+}
 
 // Reset the form after submission
 const afterSubmit = (result, dispatch) =>
     dispatch(reset('airlineAddBookingForm'));
+
+AddBookingComponent = reduxForm({
+    form: 'airlineAddBookingForm',
+    validate,
+    onSubmitSuccess: afterSubmit
+})(AddBookingComponent)
 
 // Decorate with connect to read form values
 const selector = formValueSelector('airlineAddBookingForm') // <-- same as form name
@@ -191,11 +234,4 @@ AddBookingComponent = connect(
     })
 )(AddBookingComponent)
 
-export default compose(
-    connect(mapStateToProps, actions),
-    reduxForm({
-        form: 'airlineAddBookingForm',
-        validate,
-        onSubmitSuccess: afterSubmit
-    })
-)(AddBookingComponent)
+export default AddBookingComponent

@@ -1,44 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Route, Link } from "react-router-dom";
+import requireAuth from '../requireAuth'
 
-import '../../style.scss'
+import DisplayBookingListComponent from '../../components/airline_reservation/DisplayBookingListComponent'
+import DisplayPassengerListComponent from '../../components/airline_reservation/DisplayPassengerListComponent'
 
-import cst from '../../constants/airline_reservation/cst'
+const DisplayUIComponent = ({ match }) => (
+    <div>
+        <ul>
+            <li>
+                <Link to={`${match.url}/bookingList`}>Bookings List</Link>
+            </li>
+            <li>
+                <Link to={`${match.url}/passengerList`}>Passengers List</Link>
+            </li>
+        </ul>
 
-import DisplayBookingListContainer from '../../containers/airline_reservation/DisplayBookingListContainer'
-import DisplayPassengerListContainer from '../../containers/airline_reservation/DisplayPassengerListContainer'
-
-const DisplayUIComponent = ({ status, menuStatus, onClickGetPassengers, onClickGetBookings }) => (
-    <div style={{ 'backgroundColor': 'gray' }}>
-        <table align="center" style={{ 'backgroundColor': 'black', 'width': '100%' }}><tbody><tr>
-            <td align="center">
-                <button type="button" className="btn" onClick={e => {
-                    e.preventDefault()
-                    onClickGetBookings()
-                }}>All Bookings</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" className="btn" onClick={e => {
-                    e.preventDefault()
-                    onClickGetPassengers()
-                }}>All Passengers</button>
-                <br/>
-            </td></tr></tbody></table>
-        {menuStatus == cst.MENU_DISPLAY &&
-            <div>
-                {status === cst.GET_BOOKINGS_SUCCESS &&
-                    <DisplayBookingListContainer />
-                }
-                {status === cst.GET_PASSENGERS_SUCCESS &&
-                    <DisplayPassengerListContainer />
-                }
-            </div>
-        }
+        <Route path={`${match.url}/bookingList`} component={DisplayBookingListComponent} />
+        <Route path={`${match.url}/passengerList`} component={DisplayPassengerListComponent} />
     </div>
 )
-DisplayUIComponent.prototype = {
-    status: PropTypes.string,
-    menuStatus: PropTypes.string,
-    onClickGetPassengers: PropTypes.func.isRequired,
-    onClickGetBookings: PropTypes.func.isRequired,
-}
 
-export default DisplayUIComponent
+export default requireAuth(DisplayUIComponent)

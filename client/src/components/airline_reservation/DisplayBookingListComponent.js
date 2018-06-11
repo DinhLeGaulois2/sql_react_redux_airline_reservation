@@ -1,62 +1,59 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
+import actions from '../../actions/airline_reservation/reservationAction'
 import '../../style.scss'
 
-import Modal from '../../common/modal/modal'
-
-import cst from '../../constants/airline_reservation/cst'
-
-const DisplayABooking = ({ id, bookingDate, passenger, travelClass, flight, bookingStatus, ticketType, payments, onClickDelete }) =>
+const DisplayABooking = (booking) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
         <div className="relative">
-            <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {id}</h3>
+            <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {booking.id}</h3>
             <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
-                onClickDelete(id)
+                this.props.onClickDelete(booking.id)
             }}>X</button>
         </div>
-        <p><b>Booking Date</b>: {bookingDate}</p>
+        <p><b>Booking Date</b>: {booking.bookingDate}</p>
 
         <table style={{ 'width': '100%' }}><tbody>
             <tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px', 'borderRadius': '20px' }}>
-                <b>Client Id</b>: {passenger.id}<br />
-                <b>Name</b>: {passenger.firstName} {passenger.lastName}<br />
-                <b>Phone</b>: {passenger.phone}<br />
-                <b>Email</b>: {passenger.email}<br />
-                <b>Address</b>: {passenger.address}, {passenger.city}, {passenger.state} {passenger.zipcode}, {passenger.country}
+                <b>Client Id</b>: {booking.passenger.id}<br />
+                <b>Name</b>: {booking.passenger.firstName} {booking.passenger.lastName}<br />
+                <b>Phone</b>: {booking.passenger.phone}<br />
+                <b>Email</b>: {booking.passenger.email}<br />
+                <b>Address</b>: {booking.passenger.address}, {booking.passenger.city}, {booking.passenger.state} {booking.passenger.zipcode}, {booking.passenger.country}
             </td></tr>
         </tbody></table>
         <br />
-        <p><b>Travel Class</b>: {travelClass.travelClassCode}</p>
+        <p><b>Travel Class</b>: {booking.travelClass.travelClassCode}</p>
         <p><b>Flight</b>:</p>
         <ul>
-            <li><b>Number</b>: {flight.flightNumber}</li>
-            <li><b>Destination</b>: {flight.destination}</li>
-            <li><b>Departure</b>: {flight.departureTime}</li>
-            <li><b>Arrival</b>: {flight.arrivalTime}</li>
-            <li><b>Aircraft</b>: {flight.airplane.aircraftType}</li>
+            <li><b>Number</b>: {booking.flight.flightNumber}</li>
+            <li><b>Destination</b>: {booking.destination}</li>
+            <li><b>Departure</b>: {booking.flight.departureTime}</li>
+            <li><b>Arrival</b>: {booking.flight.arrivalTime}</li>
+            <li><b>Aircraft</b>: {booking.flight.airplane.aircraftType}</li>
         </ul>
-        <p><b>Booking Status</b>: {bookingStatus.bookingStatusCode}</p>
-        <p><b>Ticket Type</b>: {ticketType.ticketTypeCode}</p>
+        <p><b>Booking Status</b>: {booking.bookingStatus.bookingStatusCode}</p>
+        <p><b>Ticket Type</b>: {booking.ticketType.ticketTypeCode}</p>
         <p><b>Payment</b>: </p>
         <ul>
-            <li><b>Amount</b>: {payments[0].paymentAmount}</li>
-            <li><b>Status</b>: {payments[0].paymentStatus.paymentStatusCode}</li>
-            <li><b>Method</b>: {payments[0].paymentMethod.paymentMethodCode}</li>
+            <li><b>Amount</b>: {booking.payments[0].paymentAmount}</li>
+            <li><b>Status</b>: {booking.payments[0].paymentStatus.paymentStatusCode}</li>
+            <li><b>Method</b>: {booking.payments[0].paymentMethod.paymentMethodCode}</li>
         </ul>
     </td >
 
-const DisplayBookingListComponent = ({ bookings, onClickNewBooking, onClickDelete }) => (
+const DisplayBookingListComponent = () => (
     <div>
         <div>
             <table align="center"><tbody>
-                {bookings.map((booking, index) =>
+                {this.props.bookings.map((booking, index) =>
                     <tr key={index}>
                         <DisplayABooking
                             key={booking.id}
                             {...booking}
-                            onClickDelete={onClickDelete}
+                            onClickDelete={this.props.onClickDelete}
                         />
                     </tr>
                 )}
@@ -65,85 +62,8 @@ const DisplayBookingListComponent = ({ bookings, onClickNewBooking, onClickDelet
     </div>
 )
 
-//--------------------------------------------
-const airplane = {
-    aircrafType: PropTypes.string
-}
+const mapStateToProps = (state) => ({
+    bookings: state.booking.data
+})
 
-const flightShape = {
-    flightNumber: PropTypes.string,
-    destination: PropTypes.string,
-    departureTime: PropTypes.date,
-    arrivalTime: PropTypes.date,
-    airplane: PropTypes.shape(airplane)
-}
-//----------------------------------------------
-const bookingStatusShape = {
-    bookingStatusCode: PropTypes.string
-}
-//----------------------------------------------
-const ticketTypeShape = {
-    ticketTypeCode: PropTypes.string
-}
-//----------------------------------------------
-const aPassengerShape = {
-    id: PropTypes.number,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    phone: PropTypes.string,
-    email: PropTypes.string,
-    address: PropTypes.string,
-    zipcode: PropTypes.number,
-    state: PropTypes.string,
-    city: PropTypes.string,
-    country: PropTypes.string
-}
-//----------------------------------------------
-DisplayABooking.propTypes = {
-    id: PropTypes.number,
-    bookingDate: PropTypes.string,
-    passenger: PropTypes.shape(aPassengerShape),
-    travelClass: PropTypes.shape({
-        travelClassCode: PropTypes.string
-    }),
-    flight: PropTypes.shape(flightShape),
-    bookingStatus: PropTypes.shape(bookingStatusShape),
-    ticketType: PropTypes.shape(ticketTypeShape),
-    payments: PropTypes.arrayOf(PropTypes.shape({
-        paymentAmount: PropTypes.number,
-        paymentStatus: PropTypes.shape({
-            paymentStatusCode: PropTypes.string
-        }),
-        paymentMethod: PropTypes.shape({
-            paymentMethodCode: PropTypes.string
-        })
-    })),
-    onClickDelete: PropTypes.func.isRequired
-}
-
-DisplayBookingListComponent.propTypes = {
-    bookings: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        bookingDate: PropTypes.date,
-        passenger: PropTypes.shape(aPassengerShape),
-        travelClass: PropTypes.shape({
-            travelClassCode: PropTypes.string
-        }),
-        flight: PropTypes.shape(flightShape),
-        bookingStatus: PropTypes.shape(bookingStatusShape),
-        ticketType: PropTypes.shape(ticketTypeShape),
-        payments: PropTypes.arrayOf(PropTypes.shape({
-            paymentAmount: PropTypes.number,
-            paymentStatus: PropTypes.shape({
-                paymentStatusCode: PropTypes.string
-            }),
-            paymentMethod: PropTypes.shape({
-                paymentMethodCode: PropTypes.string
-            })
-        }))
-    })),
-    onClickDelete: PropTypes.func.isRequired
-}
-//--------------------------------------------
-
-export default DisplayBookingListComponent
+export default connect(mapStateToProps, actions)(DisplayBookingListComponent)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Field } from 'redux-form'
 
 export const renderInputField = ({ input, placeholder, type, meta: { touched, error } }) => (
     <div>
