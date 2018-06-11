@@ -52,10 +52,16 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 ## Execution
 
-> 1 - Create a database name '**airline_reservation**' (enter the password of **YOUR** database. Instruction in this file [here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server/models/index.js)).<br/>
-> 2 - Execute (on the application's **root** folder): **npm install** (to install **dependencies**)<br/>
-> 3 - Execute (on the application's **root** folder): **npm run build** (to run the **server**)<br/>
-> 4 - Open your web browser (***Firefox***, ***Chrome***, etc.) then, enter: **localhost:3000**<br/>
+> The project is build as a 3-tier architecture (fullstack), and the three parts was built to be ready to be put on different machines (which could be in different continents). So, we need to run 3 parts independently, in order: **database**, then **server** then **user interface**.
+>
+> 1 - You need to create your database with the name '**airline_reservation**' then start it with the tool you are using (LCI or MySQL Workbench, or...) and don't forget to enter some configuration's data (enter the password of **YOUR** database. Instruction in this file [here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server/models/index.js)).
+>
+> 2 - Open a terminal, and execute (in the folder "**server**"): **npm install** (to install **dependencies**)
+> 
+> 3 - Open ANOTHER termimal, and execute (in the folder "**client**"): **npm run build** (to run the **server**)
+>
+> 4 - Open your web browser (***Firefox***, ***Chrome***, etc.) then, enter: **localhost:3000**
+
 
 ---------------
 
