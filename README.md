@@ -22,6 +22,7 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 ---------------
 
 ## Technologies
+> * **Security**: **JWT-simple**, **bcrypt-nodejs**, **passport** (**passport-jwt**, **passport-local**)
 > * **Front End**: ***React-Redux***
 > * **Back End**: ***Express/Node.js*** + ***Sequelize*** (ORM)
 > * **Database**: ***mySQL***
