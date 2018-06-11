@@ -1,5 +1,7 @@
 # Airline Reservation
 
+# [Project will be upgraded: Authentication will be set up for SERVER, DATABASE and UI to protect every "route" that need protection]
+
 ## Aim
 Building a project based on an EER (Enhanced Entity-Relationship). The goal is to learn to build project base on someone's idea, which is much more difficult than with ours.
 
@@ -22,7 +24,6 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 ---------------
 
 ## Technologies
-> * **Security**: **JWT-simple**, **bcrypt-nodejs**, **passport** (**passport-jwt**, **passport-local**)
 > * **Security**: **JWT-simple**, **bcrypt-nodejs**, **passport** (**passport-jwt**, **passport-local**)
 > * **Front End**: ***React-Redux***
 > * **Back End**: ***Express/Node.js*** + ***Sequelize*** (ORM)
