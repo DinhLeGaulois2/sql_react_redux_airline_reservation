@@ -24,17 +24,18 @@ module.exports = function (sequelize, Sequelize) {
       }
     }
   }, {
-      validPassword: function (candidatePwd, cb) {
-        bcrypt.compare(this.password, candidatePwd, (err, isMatch) => {
-          if (err) cb(err)
-          if (isMatch)
-            return cb(null, user)
-          else return cb(null, false)
-        })
-      },
-      dialect: 'mysql'
+      instanceMethods: {
+        validPassword(candidatePwd, cb) {
+          bcrypt.compare(this.password, candidatePwd, (err, isMatch) => {
+            if (err) cb(err)
+            if (isMatch)
+              return cb(null, user)
+            else return cb(null, false)
+          })
+        }
+      }
     }
-  );
+  )
 
   User.beforeCreate(function (user, options) {
     var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {

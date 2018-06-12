@@ -8,7 +8,7 @@ const DisplayAPassenger = (passenger) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
         <div className="relative">
             <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {passenger.id}</h3>
-            <button type="button" className="btnDelete"  style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
+            <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
                 this.props.onClickDelete(passenger.id)
             }}>X</button>
@@ -20,21 +20,30 @@ const DisplayAPassenger = (passenger) =>
 
     </td>
 
-const DisplayPassengerListComponent = () => (
-    <div>
-        <table align="center" style={{ 'width': '80%' }}><tbody>
-            {this.props.passengers.map((passenger, index) =>
-                <tr key={index}>
-                    <DisplayAPassenger
-                        key={passenger.id}
-                        {...passenger}
-                        onClickDelete={this.props.onClickDelete}
-                    />
-                </tr>
-            )}
-        </tbody></table>
-    </div>
-)
+class DisplayPassengerListComponent extends React.Component {
+    render() {
+        return (
+            <div>
+                {this.props.passengers.length > 0 &&
+                    <table align="center" style={{ 'width': '80%' }}><tbody>
+                        {this.props.passengers.map((passenger, index) =>
+                            <tr key={index}>
+                                <DisplayAPassenger
+                                    key={passenger.id}
+                                    {...passenger}
+                                    onClickDelete={this.props.onClickDelete}
+                                />
+                            </tr>
+                        )}
+                    </tbody></table>
+                }
+                {this.props.passengers.length === 0 &&
+                    <h1>No Passenger to Show!</h1>
+                }
+            </div>
+        )
+    }
+}
 
 const mapStateToProps = (state) => ({
     passengers: state.booking.data

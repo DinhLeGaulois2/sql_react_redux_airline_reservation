@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import actions from '../../actions/airline_reservation/reservationAction'
@@ -44,9 +44,11 @@ const DisplayABooking = (booking) =>
         </ul>
     </td >
 
-const DisplayBookingListComponent = () => (
-    <div>
-        <div>
+class DisplayBookingListComponent extends Component {
+    render() {
+        return (
+            <div>
+                {this.props.bookings.length > 0 &&
             <table align="center"><tbody>
                 {this.props.bookings.map((booking, index) =>
                     <tr key={index}>
@@ -58,12 +60,24 @@ const DisplayBookingListComponent = () => (
                     </tr>
                 )}
             </tbody></table>
-        </div>
-    </div>
-)
+        }
+        {this.props.bookings.length === 0 &&
+            <h1>No Booking to Show!</h1>
+        }
+            </div>
+        )
+    }
+}
+
+//KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+const showState = (state) => {
+    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+    console.log("DisplayBookingListComponent, state: " + JSON.stringify(state.booking.data, null, 5))
+    return state.booking.data
+}
 
 const mapStateToProps = (state) => ({
-    bookings: state.booking.data
+    bookings: showState(state)
 })
 
 export default connect(mapStateToProps, actions)(DisplayBookingListComponent)

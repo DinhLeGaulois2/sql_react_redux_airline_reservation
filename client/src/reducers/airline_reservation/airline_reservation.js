@@ -73,8 +73,9 @@ const reservation = (state = initialStates, action) => {
                 menuStatus: action.type
             })
         }
+        default:
+          return state;
     }
-    return state;
 }
 
 export default reservation
