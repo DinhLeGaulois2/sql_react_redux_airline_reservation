@@ -17,7 +17,11 @@ export const signup = (formProps, callback) => dispatch => {
 };
 
 export const signin = (formProps, callback) => dispatch => {
-  axios.post('http://localhost:3090/signin', formProps)
+  axios.post('http://localhost:3090/signin', formProps, {
+    headers: {
+      'authorization': localStorage.getItem('token')
+    }
+  })
     .then(response => {
       //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
       console.log("client, login: " + JSON.stringify(response, null, 5))
