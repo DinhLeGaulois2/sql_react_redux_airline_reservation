@@ -42,7 +42,7 @@ class Signin extends Component {
           />
           (At least 8 characters with - at least - 1 uppercase, 1 lowercase and 1 numeric character)
           <div>{this.props.errorMessage}</div><br/>
-          <button type="submit" disabled={submitting}>Sign Up!</button>
+          <button type="submit" disabled={submitting}>Sign In!</button>
         </form>
       </div>
     );
