@@ -33,20 +33,20 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 ## Enhanced Entity-Relationship
 
-![alt text](client/assets/img/airlinebooking.jpg)
+![alt text](assets/img/airlinebooking.jpg)
 
 ---------------
 
 ## User Interface (data is generated randomly: fake address, fake date, etc.)
 
 ### List All Bookings
-![alt text](client/assets/img/bookingList.jpg)
+![alt text](assets/img/bookingList.jpg)
 
 ### List All Passengers
-![alt text](client/assets/img/passengerList.jpg)
+![alt text](assets/img/passengerList.jpg)
 
 ### Add New Passenger
-![alt text](client/assets/img/addPassenger.jpg)
+![alt text](assets/img/addPassenger.jpg)
 
 ---------------
 
@@ -68,7 +68,7 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 At the project's root folder ([here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server.js)), we have a file name "**server.js**", by the end, we have:
 
-![alt text](client/assets/img/server_config.jpg)
+![alt text](assets/img/server_config.jpg)
 
 It's very important to follow the instruction, otherwise, you could have very disappointed surprises ...
 

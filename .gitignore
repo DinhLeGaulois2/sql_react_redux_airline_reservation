@@ -5,6 +5,7 @@
 /tmp
 /save
 /server/MY_PRIVATE_FOLDER
+/client/OldVersion
 
 # dependencies
 /client/node_modules
