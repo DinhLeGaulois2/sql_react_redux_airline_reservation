@@ -3,7 +3,6 @@ import cst from '../../constants/airline_reservation/cst'
 const initialStates = {
     data: [],
     status: cst.ADD_FLIGHT,
-    menuStatus: cst.MENU_NEUTRAL
 }
 
 const reservation = (state = initialStates, action) => {
@@ -61,16 +60,6 @@ const reservation = (state = initialStates, action) => {
         case cst.GET_PASSENGERS_FAILURE: {
             return Object.assign({}, state, {
                 status: action.type
-            })
-        }
-        case cst.MENU_ADD: {
-            return Object.assign({}, state, {
-                menuStatus: action.type
-            })
-        }
-        case cst.MENU_DISPLAY: {
-            return Object.assign({}, state, {
-                menuStatus: action.type
             })
         }
         default:

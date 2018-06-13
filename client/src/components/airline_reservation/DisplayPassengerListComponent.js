@@ -10,7 +10,7 @@ const DisplayAPassenger = (passenger) =>
             <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {passenger.id}</h3>
             <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
-                this.props.onClickDelete(passenger.id)
+                this.props.deleteBookingById(passenger.id)
             }}>X</button>
         </div>
         <p><b>Name</b>: {passenger.firstName} {passenger.lastName}</p>
@@ -21,6 +21,11 @@ const DisplayAPassenger = (passenger) =>
     </td>
 
 class DisplayPassengerListComponent extends React.Component {
+    constructor(props){
+        super(props)
+        this.props.setPassengers()
+    }
+
     render() {
         return (
             <div>
@@ -31,7 +36,7 @@ class DisplayPassengerListComponent extends React.Component {
                                 <DisplayAPassenger
                                     key={passenger.id}
                                     {...passenger}
-                                    onClickDelete={this.props.onClickDelete}
+                                    deleteBookingById={this.props.deleteBookingById}
                                 />
                             </tr>
                         )}

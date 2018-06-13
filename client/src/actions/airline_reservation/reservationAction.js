@@ -7,7 +7,7 @@ const reservationAction = {
         return (dispatch, getState) => {
             let st = getState().booking.data[0]
             let anArray = {};
-            
+
             anArray.classSeatCapacity = {
                 newSeatCapacity: st.flight[data.flightIndex].classSeatCapacities[data.classSeatCapacitiesIndex].seatCapacity - 1,  //<<<<<<<< the name is DIFFERENT ...
                 travelClassId: st.flight[data.flightIndex].classSeatCapacities[data.classSeatCapacitiesIndex].travelClass.id,
@@ -32,7 +32,6 @@ const reservationAction = {
                     axios.get("http://localhost:3090/api/get/bookings")
                         .then(data => {
                             dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
-                            dispatch({ type: cst.MENU_DISPLAY })
                         })
                         .catch(err => dispatch({ type: cst.GET_BOOKINGS_FAILURE }))
                 })
@@ -52,20 +51,31 @@ const reservationAction = {
 
     setPassengers: () => {
         return dispatch =>
-            axios.get("http://localhost:3090/api/get/passengers")
+            axios.get("http://localhost:3090/api/get/passengers", {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(data => {
                     dispatch({ type: cst.GET_PASSENGERS_SUCCESS, payload: data })
-                    dispatch({ type: cst.MENU_DISPLAY })
                 })
                 .catch(err => dispatch({ type: cst.GET_PASSENGERS_FAILURE }))
     },
 
     setBookings: () => {
+        //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+        console.log("client, actions, setBookings")
         return (dispatch) =>
-            axios.get("http://localhost:3090/api/get/bookings")
+            axios.get("http://localhost:3090/api/get/bookings", {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(data => {
+
+                    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+                    console.log("client, actions, setBookings, data" + JSON.stringify(data, null, 5))
                     dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
-                    dispatch({ type: cst.MENU_DISPLAY })
                 })
                 .catch(err => dispatch({ type: cst.GET_BOOKINGS_FAILURE }))
     },
@@ -77,7 +87,6 @@ const reservationAction = {
                     axios.get("http://localhost:3090/api/get/bookings")
                         .then(data => {
                             dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
-                            dispatch({ type: cst.MENU_DISPLAY })
                         })
                         .catch(err => {
                             dispatch({ type: cst.GET_BOOKINGS_FAILURE })
@@ -95,29 +104,29 @@ const reservationAction = {
                     axios.get("http://localhost:3090/api/get/passengers")
                         .then(data => {
                             dispatch({ type: cst.GET_PASSENGERS_SUCCESS, payload: data })
-                            dispatch({ type: cst.MENU_DISPLAY })
                         })
                         .catch(err => dispatch({ type: cst.GET_PASSENGERS_FAILURE }))
                 }).catch(err => alert("Error of Deletion, err: " + err))
     },
 
-    setStatus: (mainStatus, actionStatus) => {
+    setStatus: (actionStatus) => {
+        //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+        console.log("client, setstatus, WWWWWWWWWWWWWWWW: " + actionStatus)
         return dispatch => {
-            if (mainStatus.length > 0) dispatch({ type: mainStatus })
-            if (actionStatus.length > 0) {
-                if (actionStatus === cst.ADD_BOOKING) {
-                    axios.get("http://localhost:3090/api/get/info4Booking")
-                        .then(data => {
-                            let anArray = [];
-                            anArray.push(data.data)
-                            dispatch({
-                                type: cst.ADD_BOOKING,
-                                payload: anArray
-                            })
+            if (actionStatus === cst.ADD_BOOKING) {
+                //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+                console.log("client, setstatus, ADD_BOOKINg")
+                axios.get("http://localhost:3090/api/get/info4Booking")
+                    .then(data => {
+                        let anArray = [];
+                        anArray.push(data.data)
+                        dispatch({
+                            type: cst.ADD_BOOKING,
+                            payload: anArray
                         })
-                }
-                else dispatch({ type: actionStatus })
+                    })
             }
+            else dispatch({ type: actionStatus })
         }
     }
 }

@@ -47,7 +47,7 @@ class AddBookingComponent extends React.Component {
                     }}>Add New Booking</div>
                 </div>
                 <br />
-                <form onSubmit={handleSubmit(this.props.onClickAddBooking)}>
+                <form onSubmit={handleSubmit(this.props.addBooking)}>
                     <div>
                         {!selectAPassengerIndex &&
                             <div>

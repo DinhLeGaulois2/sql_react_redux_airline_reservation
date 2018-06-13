@@ -60,7 +60,7 @@ class AddPassengerComponent extends React.Component {
                 }}>Add New Passenger</div>
                 <p align="center">[<b><i>Fields with (<font color="red">*</font>) are required</i></b>]</p>
                 <hr />
-                <form onSubmit={handleSubmit(this.props.onClickAddPassenger)}>
+                <form onSubmit={handleSubmit(this.props.addPassenger)}>
                     <div>
                         <Field name="firstName" component={renderInputField} placeholder="First Name" /><br />
                         <Field name="lastName" component={renderInputField} placeholder="Last Name" /><br />

@@ -12,9 +12,9 @@ const localLogin = new LocalStrategy(localOptions, function (email, password, do
     .then(user => {
       user.validatePwd(password, function (err, isMatch) {
         if (err) return done(err);
-        if (!isMatch) return done(null, false); 
+        if (!isMatch) return done(null, false);
         return done(null, user);
-      })        
+      })
     }).catch(err => done(err))
 });
 
@@ -26,15 +26,16 @@ const jwtOptions = {
 
 // Create JWT strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
-  db.user.findById(payload.sub, function (err, user) {
-    if (err) { return done(err, false); }
 
+  db.user.findById(payload.sub).then(user => {
+    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+    console.log("server, passport, user: " + JSON.stringify(user, null, 5))
     if (user) {
       done(null, user);
     } else {
       done(null, false);
     }
-  });
+  }).catch(err => done(err, false))
 });
 
 // Tell passport to use this strategy

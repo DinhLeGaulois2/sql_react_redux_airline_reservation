@@ -10,7 +10,7 @@ const DisplayABooking = (booking) =>
             <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {booking.id}</h3>
             <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
-                this.props.onClickDelete(booking.id)
+                this.props.deleteBookingById(booking.id)
             }}>X</button>
         </div>
         <p><b>Booking Date</b>: {booking.bookingDate}</p>
@@ -37,33 +37,38 @@ const DisplayABooking = (booking) =>
         <p><b>Booking Status</b>: {booking.bookingStatus.bookingStatusCode}</p>
         <p><b>Ticket Type</b>: {booking.ticketType.ticketTypeCode}</p>
         <p><b>Payment</b>: </p>
-        <ul>
+        {/* <ul>
             <li><b>Amount</b>: {booking.payments[0].paymentAmount}</li>
             <li><b>Status</b>: {booking.payments[0].paymentStatus.paymentStatusCode}</li>
             <li><b>Method</b>: {booking.payments[0].paymentMethod.paymentMethodCode}</li>
-        </ul>
+        </ul> */}
     </td >
 
 class DisplayBookingListComponent extends Component {
+    constructor(props){
+        super(props)
+        this.props.setBookings()
+    }
+
     render() {
         return (
             <div>
                 {this.props.bookings.length > 0 &&
-            <table align="center"><tbody>
-                {this.props.bookings.map((booking, index) =>
-                    <tr key={index}>
-                        <DisplayABooking
-                            key={booking.id}
-                            {...booking}
-                            onClickDelete={this.props.onClickDelete}
-                        />
-                    </tr>
-                )}
-            </tbody></table>
-        }
-        {this.props.bookings.length === 0 &&
-            <h1>No Booking to Show!</h1>
-        }
+                    <table align="center"><tbody>
+                        {this.props.bookings.map((booking, index) =>
+                            <tr key={index}>
+                                <DisplayABooking
+                                    key={booking.id}
+                                    {...booking}
+                                    deleteBookingById={this.props.deleteBookingById}
+                                />
+                            </tr>
+                        )}
+                    </tbody></table>
+                }
+                {this.props.bookings.length === 0 &&
+                    <h1>No Booking to Show!</h1>
+                }
             </div>
         )
     }
@@ -72,7 +77,7 @@ class DisplayBookingListComponent extends Component {
 //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 const showState = (state) => {
     //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-    console.log("DisplayBookingListComponent, state: " + JSON.stringify(state.booking.data, null, 5))
+    console.log("client, DisplayBookingListComponent, state: " + JSON.stringify(state, null, 5))
     return state.booking.data
 }
 
