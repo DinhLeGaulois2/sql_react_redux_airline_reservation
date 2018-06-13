@@ -1,10 +1,8 @@
 const bcrypt = require('bcrypt-nodejs');
-const Sequelize = require('sequelize');
-
-SALT_WORK_FACTOR = 12;
+var Promise = require("bluebird");
 
 module.exports = function (sequelize, Sequelize) {
-  let User = sequelize.define("user", {
+  var UserSchema = sequelize.define("user", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -12,40 +10,39 @@ module.exports = function (sequelize, Sequelize) {
     },
     email: {
       type: Sequelize.STRING,
+      allowNull: false,
       unique: true,
-      validate: {
-        notEmpty: true,
-      }
     },
     password: {
       type: Sequelize.STRING,
-      validate: {
-        notEmpty: true,
-      }
+      allowNull: false
     }
-  }, {
-      instanceMethods: {
-        validPassword(candidatePwd, cb) {
-          bcrypt.compare(this.password, candidatePwd, (err, isMatch) => {
-            if (err) cb(err)
-            if (isMatch)
-              return cb(null, user)
-            else return cb(null, false)
-          })
-        }
-      }
-    }
-  )
+  })
 
-  User.beforeCreate(function (user, options) {
-    var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-      return salt;
-    });
-    bcrypt.hash(user.password, salt, null, function (err, hash) {
-      if (err) return next(err);
-      user.password = hash;
+  // new version: V4
+  UserSchema.prototype.validatePwd = function (candidatePwd, cb) {
+    bcrypt.compare(candidatePwd, this.password, (err, isMatch) => {
+      if (err) cb(err)
+      if (isMatch)
+        return cb(null, this)
+      else 
+        return cb(null, false)
     })
-  });
+  }
 
-  return User;
+  UserSchema.beforeCreate(function (model, options) {
+    SALT_WORK_FACTOR = 12;
+    return new Promise((resolve, reject) => {
+      bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+        if (err) return reject(err);
+        bcrypt.hash(model.password, salt, null, function (err, hash) {
+          if (err) return cb(err);
+          model.password = hash;
+          return resolve(model, options);
+        })
+      });
+    })
+  })
+
+  return UserSchema;
 }

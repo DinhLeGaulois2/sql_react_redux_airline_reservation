@@ -27,9 +27,9 @@ const reservationAction = {
                 paymentMethodId: st.paymentMethod[data.paymentMethodIndex].id,
                 paymentStatusId: 1,
             }
-            axios.post("/api/add/booking", anArray)
+            axios.post("http://localhost:3090/api/add/booking", anArray)
                 .then(response => {
-                    axios.get("/api/get/bookings")
+                    axios.get("http://localhost:3090/api/get/bookings")
                         .then(data => {
                             dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
                             dispatch({ type: cst.MENU_DISPLAY })
@@ -42,7 +42,7 @@ const reservationAction = {
 
     addPassenger: (data) => {
         return dispatch => {
-            axios.post("/api/add/passenger", data)
+            axios.post("http://localhost:3090/api/add/passenger", data)
                 .then(response => {
                     dispatch({ type: cst.ADD_PASSENGERS_SUCCESS, payload: response })
                 })
@@ -52,7 +52,7 @@ const reservationAction = {
 
     setPassengers: () => {
         return dispatch =>
-            axios.get("/api/get/passengers")
+            axios.get("http://localhost:3090/api/get/passengers")
                 .then(data => {
                     dispatch({ type: cst.GET_PASSENGERS_SUCCESS, payload: data })
                     dispatch({ type: cst.MENU_DISPLAY })
@@ -62,7 +62,7 @@ const reservationAction = {
 
     setBookings: () => {
         return (dispatch) =>
-            axios.get("/api/get/bookings")
+            axios.get("http://localhost:3090/api/get/bookings")
                 .then(data => {
                     dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
                     dispatch({ type: cst.MENU_DISPLAY })
@@ -72,9 +72,9 @@ const reservationAction = {
 
     deleteBookingById: (bId) => {
         return (dispatch) =>
-            axios.delete("/api/delete/booking/" + bId)
+            axios.delete("http://localhost:3090/api/delete/booking/" + bId)
                 .then(data => {
-                    axios.get("/api/get/bookings")
+                    axios.get("http://localhost:3090/api/get/bookings")
                         .then(data => {
                             dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
                             dispatch({ type: cst.MENU_DISPLAY })
@@ -90,9 +90,9 @@ const reservationAction = {
 
     deletePassengerById: (pId) => {
         return (dispatch) =>
-            axios.delete("/api/delete/passenger/" + pId)
+            axios.delete("http://localhost:3090/api/delete/passenger/" + pId)
                 .then(data => {
-                    axios.get("/api/get/passengers")
+                    axios.get("http://localhost:3090/api/get/passengers")
                         .then(data => {
                             dispatch({ type: cst.GET_PASSENGERS_SUCCESS, payload: data })
                             dispatch({ type: cst.MENU_DISPLAY })
@@ -106,7 +106,7 @@ const reservationAction = {
             if (mainStatus.length > 0) dispatch({ type: mainStatus })
             if (actionStatus.length > 0) {
                 if (actionStatus === cst.ADD_BOOKING) {
-                    axios.get("/api/get/info4Booking")
+                    axios.get("http://localhost:3090/api/get/info4Booking")
                         .then(data => {
                             let anArray = [];
                             anArray.push(data.data)

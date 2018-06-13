@@ -2,7 +2,11 @@ import axios from 'axios';
 import { AUTH_USER, AUTH_ERROR } from './types';
 
 export const signup = (formProps, callback) => dispatch => {
-  axios.post('http://localhost:3090/signup', formProps)
+  axios.post('http://localhost:3090/signup', formProps, {
+    headers: {
+      'authorization': localStorage.getItem('token')
+    }
+  })
     .then(response => {
       dispatch({
         type: AUTH_USER,
@@ -23,8 +27,6 @@ export const signin = (formProps, callback) => dispatch => {
     }
   })
     .then(response => {
-      //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-      console.log("client, login: " + JSON.stringify(response, null, 5))
       dispatch({
         type: AUTH_USER,
         payload: response.data.token
