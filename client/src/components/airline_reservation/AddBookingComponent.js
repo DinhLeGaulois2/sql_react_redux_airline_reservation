@@ -40,6 +40,7 @@ class AddBookingComponent extends React.Component {
             ticketTypeCheck, paymentMethodCheck, selectAPassengerIndex } = this.props
         return (
             <div>
+                <br/>
                 {this.props.data.length &&
                     <div>
                         <div className="container" style={{ 'backgroundColor': 'white' }}>
@@ -171,8 +172,7 @@ class AddBookingComponent extends React.Component {
                     </div>
                 }
                 {this.props.data.length === 0 &&
-                    <h1>No Data 2 Display</h1>
-
+                    <h1>&nbsp;</h1>
                 }
             </div>
         )

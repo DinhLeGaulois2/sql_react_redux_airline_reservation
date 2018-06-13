@@ -1,6 +1,6 @@
 import React from 'react'
 import requireAuth from '../requireAuth'
-import { Route, Link } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import '../HeaderStyle.css';
 
 import AddBookingComponent from '../../components/airline_reservation/AddBookingComponent'
@@ -11,9 +11,14 @@ class AddUIComponent extends React.Component {
         const { match } = this.props
         return (
             <div>
-                <Link to={`${match.url}/addBooking`}>New Booking</Link>
-                <Link to={`${match.url}/addPassenger`}>New Passenger</Link>
-
+                <div style={{ "backgroundColor": "black" }}>
+                <br/>
+                    <p align="center">
+                        <NavLink to={`${match.url}/addBooking`} className="navLink" strict activeStyle={{ color: 'blue' }}>New Booking</NavLink>
+                        <NavLink to={`${match.url}/addPassenger`} className="navLink" strict activeStyle={{ color: 'blue' }}>New Passenger</NavLink>
+                    </p>
+                    <br/>
+                </div>
                 <Route path={`${match.url}/addBooking`} component={AddBookingComponent} />
                 <Route path={`${match.url}/addPassenger`} component={AddPassengerComponent} />
             </div>

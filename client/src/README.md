@@ -39,6 +39,9 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 ## User Interface (data is generated randomly: fake address, fake date, etc.)
 
+### Sign In/Up
+![alt text](assets/img/signInOrUp.jpg)
+
 ### List All Bookings
 ![alt text](assets/img/bookingList.jpg)
 

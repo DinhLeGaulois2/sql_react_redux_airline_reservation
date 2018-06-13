@@ -22,7 +22,7 @@ const DisplayAPassenger = (passenger) =>
     </td>
 
 class DisplayPassengerListComponent extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.props.setPassengers()
     }
@@ -30,6 +30,7 @@ class DisplayPassengerListComponent extends React.Component {
     render() {
         return (
             <div>
+                <br />
                 {this.props.passengers.length > 0 &&
                     <table align="center" style={{ 'width': '80%' }}><tbody>
                         {this.props.passengers.map((passenger, index) =>
@@ -42,9 +43,6 @@ class DisplayPassengerListComponent extends React.Component {
                             </tr>
                         )}
                     </tbody></table>
-                }
-                {this.props.passengers.length === 0 &&
-                    <h1>No Passenger to Show!</h1>
                 }
             </div>
         )

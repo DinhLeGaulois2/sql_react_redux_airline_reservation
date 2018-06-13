@@ -1,5 +1,9 @@
 import React from 'react';
 
-export default () => {
-  return <h3>Welcome! Sign up or sign in!</h3>;
-};
+const Welcome = () => 
+  <div>
+      <br/><br/><br/><br/><br/>
+      <h1 align="center">Welcome!</h1>
+  </div>
+
+export default Welcome

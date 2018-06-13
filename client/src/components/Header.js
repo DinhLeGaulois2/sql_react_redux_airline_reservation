@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './HeaderStyle.css';
 
 class Header extends Component {
-  renderLinks() {
+  renderNavLinks() {
     if (this.props.authenticated) {
       return (
         <div>
-          <Link to="/signout">Sign Out</Link>
-          <Link to="/mainMenu">Booking</Link>
+          <NavLink to="/signout" className="navLink" strict activeStyle={{ color: 'blue' }}>Sign Out</NavLink>
+          <NavLink to="/mainMenu" className="navLink" strict activeStyle={{ color: 'blue' }}>Booking</NavLink>
         </div>
       );
     } else {
       return (
         <div>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/signin">Sign In</Link>
+          <NavLink to="/signup" className="navLink" strict activeStyle={{ color: 'blue' }}>Sign Up</NavLink>
+          <NavLink to="/signin" className="navLink" strict activeStyle={{ color: 'blue' }}>Sign In</NavLink>
         </div>
       );
     }
@@ -24,9 +24,10 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="header">
-        <Link to="/">Airline Reservation</Link>
-        {this.renderLinks()}
+      <div className="header" style={{ "backgroundColor": "black" }}>
+        <span style={{color:"blue", backgroundColor:"white", fontSize:"1.5em", padding: '0px 10px', fontWeight: "bold"}}>Flight Reservation</span>
+        
+        {this.renderNavLinks()}
       </div>
     );
   }

@@ -48,6 +48,7 @@ class AddPassengerComponent extends React.Component {
 
         return (
             <div className="container" style={{ 'backgroundColor': 'white' }}>
+                <br />
                 <div align="center" className="mainTitle" style={{
                     'backgroundColor': 'black',
                     'color': 'cyan',

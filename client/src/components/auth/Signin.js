@@ -26,6 +26,7 @@ class Signin extends Component {
 
     return (
       <div className="container">
+        <h1 align="center" style={{backgroundColor: 'black', width: '100%', padding: '10px', borderRadius: "10px"}}><font color="cyan">Sign In</font></h1>
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <Field
             name="email"
@@ -40,7 +41,6 @@ class Signin extends Component {
             placeholder="Password"
             validate={passwordValidation}
           />
-          (At least 8 characters with - at least - 1 uppercase, 1 lowercase and 1 numeric character)
           <div>{this.props.errorMessage}</div><br/>
           <button type="submit" disabled={submitting}>Sign In!</button>
         </form>

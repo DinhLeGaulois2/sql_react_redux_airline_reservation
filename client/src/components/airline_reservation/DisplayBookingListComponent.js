@@ -7,6 +7,7 @@ import '../../style.scss'
 
 const DisplayABooking = (booking) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
+        <br />
         <div className="relative">
             <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {booking.id}</h3>
             <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
@@ -46,7 +47,7 @@ const DisplayABooking = (booking) =>
     </td >
 
 class DisplayBookingListComponent extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.props.setBookings()
     }
@@ -66,9 +67,6 @@ class DisplayBookingListComponent extends Component {
                             </tr>
                         )}
                     </tbody></table>
-                }
-                {this.props.bookings.length === 0 &&
-                    <h1>No Booking to Show!</h1>
                 }
             </div>
         )
