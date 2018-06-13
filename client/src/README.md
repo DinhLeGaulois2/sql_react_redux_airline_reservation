@@ -11,14 +11,6 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 >
 > The **Front-End** are NOT the most beautiful because not much work on it. The goal is to use very different technologies on very different purposes.
 
-
->  * Complexe management to allow to book airplane's ticket.
->  * **Transaction** is used to ensure that if the WHOLE processus (**insert**, **update** and **delete**) is NOT successful then NOTHING will be done (**Rollback** function will take care of it).
->  * The **insertion** of a **booking** is very complex:
->   - request information from all **collection**
->   - setup a very complex **formular** to get data in some order
->   - insertion - using **transaction** - to be sure that the insertion is successful for the WHOLE processus
-
 ---------------
 
 ## Technologies
