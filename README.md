@@ -62,7 +62,7 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 ## Configuration (VERY IMPORTANT)
 
-At the project's root folder ([here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server.js)), we have a file name "**server.js**", by the end, we have:
+At the project's root folder ([here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server/server.js)), we have a file name "**server.js**", by the end, we have:
 
 ![alt text](assets/img/server_config.jpg)
 
