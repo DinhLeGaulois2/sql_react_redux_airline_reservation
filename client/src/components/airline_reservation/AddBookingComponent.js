@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
 import { compose } from 'redux'
 import actions from '../../actions/airline_reservation/reservationAction'
+import requireAuth from '../../components/requireAuth';
 
 import cst from '../../constants/airline_reservation/cst'
 import '../../style.scss'
@@ -169,7 +170,7 @@ class AddBookingComponent extends React.Component {
                         </form>
                     </div>
                 }
-                {this.props.data.length == 0 &&
+                {this.props.data.length === 0 &&
                     <h1>No Data 2 Display</h1>
 
                 }
@@ -178,13 +179,8 @@ class AddBookingComponent extends React.Component {
     }
 }
 
-//KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-const showState = state => {
-    console.log("component, addbooking, data: " + JSON.stringify(state, null, 5))
-    return state.add.data
-}
 const mapStateToProps = (state) => ({
-    data: showState(state),
+    data: state.add.data
 })
 
 // Reset the form after submission
@@ -205,16 +201,6 @@ AddBookingComponent = connect(
     }
 )(AddBookingComponent)
 
-
-// AddBookingComponent = connect(
-//     state => ({
-//         initialValues: {
-//             flightNumber: state.booking.data[0].flight[0].flightNumber,
-//             destination: state.booking.data[0].flight[0].destination
-//         }
-//     })
-// )(AddBookingComponent)
-
 export default compose(
     connect(mapStateToProps, actions),
     reduxForm({
@@ -222,4 +208,4 @@ export default compose(
         validate,
         onSubmitSuccess: afterSubmit
     })
-)(AddBookingComponent)
+)(requireAuth(AddBookingComponent))

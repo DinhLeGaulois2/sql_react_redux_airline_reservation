@@ -28,8 +28,6 @@ const jwtOptions = {
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
 
   db.user.findById(payload.sub).then(user => {
-    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-    console.log("server, passport, user: " + JSON.stringify(user, null, 5))
     if (user) {
       done(null, user);
     } else {

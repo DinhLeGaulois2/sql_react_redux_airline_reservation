@@ -27,9 +27,17 @@ const reservationAction = {
                 paymentMethodId: st.paymentMethod[data.paymentMethodIndex].id,
                 paymentStatusId: 1,
             }
-            axios.post("http://localhost:3090/api/add/booking", anArray)
+            axios.post("http://localhost:3090/api/add/booking", anArray, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
-                    axios.get("http://localhost:3090/api/get/bookings")
+                    axios.get("http://localhost:3090/api/get/bookings", {
+                        headers: {
+                            'authorization': localStorage.getItem('token')
+                        }
+                    })
                         .then(data => {
                             dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
                         })
@@ -41,7 +49,11 @@ const reservationAction = {
 
     addPassenger: (data) => {
         return dispatch => {
-            axios.post("http://localhost:3090/api/add/passenger", data)
+            axios.post("http://localhost:3090/api/add/passenger", data, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
                     dispatch({ type: cst.ADD_PASSENGERS_SUCCESS, payload: response })
                 })
@@ -63,8 +75,6 @@ const reservationAction = {
     },
 
     setBookings: () => {
-        //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-        console.log("client, actions, setBookings")
         return (dispatch) =>
             axios.get("http://localhost:3090/api/get/bookings", {
                 headers: {
@@ -72,9 +82,6 @@ const reservationAction = {
                 }
             })
                 .then(data => {
-
-                    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                    console.log("client, actions, setBookings, data" + JSON.stringify(data, null, 5))
                     dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
                 })
                 .catch(err => dispatch({ type: cst.GET_BOOKINGS_FAILURE }))
@@ -84,7 +91,11 @@ const reservationAction = {
         return (dispatch) =>
             axios.delete("http://localhost:3090/api/delete/booking/" + bId)
                 .then(data => {
-                    axios.get("http://localhost:3090/api/get/bookings")
+                    axios.get("http://localhost:3090/api/get/bookings", {
+                    headers: {
+                        'authorization': localStorage.getItem('token')
+                    }
+                })
                         .then(data => {
                             dispatch({ type: cst.GET_BOOKINGS_SUCCESS, payload: data })
                         })
@@ -99,9 +110,17 @@ const reservationAction = {
 
     deletePassengerById: (pId) => {
         return (dispatch) =>
-            axios.delete("http://localhost:3090/api/delete/passenger/" + pId)
+            axios.delete("http://localhost:3090/api/delete/passenger/" + pId, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(data => {
-                    axios.get("http://localhost:3090/api/get/passengers")
+                    axios.get("http://localhost:3090/api/get/passengers", {
+                        headers: {
+                            'authorization': localStorage.getItem('token')
+                        }
+                    })
                         .then(data => {
                             dispatch({ type: cst.GET_PASSENGERS_SUCCESS, payload: data })
                         })

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions/airline_reservation/reservationAction'
+import requireAuth from '../../components/requireAuth';
 
 import '../../style.scss'
 
@@ -57,4 +58,4 @@ const mapStateToProps = (state) => ({
 export default connect(
     mapStateToProps,
     actions
-)(DisplayPassengerListComponent)
+)(requireAuth(DisplayPassengerListComponent))

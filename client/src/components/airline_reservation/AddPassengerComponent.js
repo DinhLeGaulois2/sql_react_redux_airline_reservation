@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, Field, reset } from 'redux-form'
 import { compose } from 'redux'
 import actions from '../../actions/airline_reservation/reservationAction'
+import requireAuth from '../../components/requireAuth';
 
 import '../../style.scss'
 
@@ -93,4 +94,4 @@ export default compose(
         validate,
         onSubmitSuccess: afterSubmit
     }),
-)(AddPassengerComponent)
+)(requireAuth(AddPassengerComponent))

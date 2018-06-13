@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import requireAuth from '../../components/requireAuth';
 
 import actions from '../../actions/airline_reservation/reservationAction'
 import '../../style.scss'
@@ -74,15 +75,8 @@ class DisplayBookingListComponent extends Component {
     }
 }
 
-//KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-const showState = (state) => {
-    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-    console.log("client, DisplayBookingListComponent, state: " + JSON.stringify(state, null, 5))
-    return state.booking.data
-}
-
 const mapStateToProps = (state) => ({
-    bookings: showState(state)
+    bookings: state.booking.data
 })
 
-export default connect(mapStateToProps, actions)(DisplayBookingListComponent)
+export default connect(mapStateToProps, actions)(requireAuth(DisplayBookingListComponent))
