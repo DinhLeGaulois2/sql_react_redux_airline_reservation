@@ -4,6 +4,7 @@ import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
 import { compose } from 'redux'
 import actions from '../../actions/airline_reservation/reservationAction'
 
+import cst from '../../constants/airline_reservation/cst'
 import '../../style.scss'
 
 const validate = values => {
@@ -28,6 +29,11 @@ const validate = values => {
 }
 
 class AddBookingComponent extends React.Component {
+    constructor(props){
+        super(props)
+        this.props.setStatus(cst.ADD_BOOKING)
+    }
+
     render() {
         const { handleSubmit, invalid, submitting, reset, flightIndex, classSeatCapacitiesCheck,
             ticketTypeCheck, paymentMethodCheck, selectAPassengerIndex } = this.props
@@ -165,7 +171,7 @@ class AddBookingComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    data: state.booking.data,
+    data: state.add.data,
 })
 
 // Reset the form after submission

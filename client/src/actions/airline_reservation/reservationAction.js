@@ -116,7 +116,11 @@ const reservationAction = {
             if (actionStatus === cst.ADD_BOOKING) {
                 //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
                 console.log("client, setstatus, ADD_BOOKINg")
-                axios.get("http://localhost:3090/api/get/info4Booking")
+                axios.get("http://localhost:3090/api/get/info4Booking", {
+                    headers: {
+                        'authorization': localStorage.getItem('token')
+                    }
+                })
                     .then(data => {
                         let anArray = [];
                         anArray.push(data.data)

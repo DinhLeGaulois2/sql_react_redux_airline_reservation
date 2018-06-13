@@ -51,7 +51,7 @@ class DisplayPassengerListComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    passengers: state.booking.data
+    passengers: state.passenger.data
 })
 
 export default connect(

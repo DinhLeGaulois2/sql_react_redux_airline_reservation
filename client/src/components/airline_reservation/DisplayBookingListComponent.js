@@ -37,11 +37,11 @@ const DisplayABooking = (booking) =>
         <p><b>Booking Status</b>: {booking.bookingStatus.bookingStatusCode}</p>
         <p><b>Ticket Type</b>: {booking.ticketType.ticketTypeCode}</p>
         <p><b>Payment</b>: </p>
-        {/* <ul>
+        <ul>
             <li><b>Amount</b>: {booking.payments[0].paymentAmount}</li>
             <li><b>Status</b>: {booking.payments[0].paymentStatus.paymentStatusCode}</li>
             <li><b>Method</b>: {booking.payments[0].paymentMethod.paymentMethodCode}</li>
-        </ul> */}
+        </ul>
     </td >
 
 class DisplayBookingListComponent extends Component {
