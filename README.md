@@ -41,6 +41,9 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 ### Add New Passenger
 ![alt text](assets/img/addPassenger.jpg)
 
+### Make a New Reservation
+![alt text](assets/img/newReservation.jpg)
+
 ---------------
 
 ## Execution
