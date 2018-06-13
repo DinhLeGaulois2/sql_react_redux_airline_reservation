@@ -5,7 +5,7 @@ import cst from '../../constants/airline_reservation/cst'
 const reservationAction = {
     addBooking: (data) => {
         return (dispatch, getState) => {
-            let st = getState().booking.data[0]
+            let st = getState().add.data[0]
             let anArray = {};
 
             anArray.classSeatCapacity = {
@@ -110,12 +110,8 @@ const reservationAction = {
     },
 
     setStatus: (actionStatus) => {
-        //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-        console.log("client, setstatus, WWWWWWWWWWWWWWWW: " + actionStatus)
         return dispatch => {
             if (actionStatus === cst.ADD_BOOKING) {
-                //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                console.log("client, setstatus, ADD_BOOKINg")
                 axios.get("http://localhost:3090/api/get/info4Booking", {
                     headers: {
                         'authorization': localStorage.getItem('token')
