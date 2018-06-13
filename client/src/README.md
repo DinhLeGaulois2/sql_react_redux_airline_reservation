@@ -1,7 +1,5 @@
 # Airline Reservation
 
-# [Project will be upgraded: Authentication will be set up for SERVER, DATABASE and UI to protect every "route" that needs protection. The project will NOT WORKING until the process of separation will be done (because some files have been moved)!]
-
 ## Aim
 Building a project based on an EER (Enhanced Entity-Relationship). The goal is to learn to build project base on someone's idea, which is much more difficult than with ours.
 
