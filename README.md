@@ -63,9 +63,9 @@ module.exports = {
 >
 > 1 - You need to create your database with the name '**airline_reservation**' (enter the password of **YOUR** database. Instruction in this file [here](https://github.com/DinhLeGaulois2/sql_react_redux_airline_reservation/blob/master/server/models/index.js)).
 >
-> 2 - Open a terminal, and execute (in the folder "**server**"): **npm install** (to install **dependencies**)
+> 2 - Open a terminal, and execute (in the folder "**server**"): **npm install** (to install **dependencies**). Then: **npm run dev** to start the server.
 > 
-> 3 - Open ANOTHER termimal, and execute (in the folder "**client**"): **npm run build** (to run the **server**)
+> 3 - Open ANOTHER termimal, and execute (in the folder "**client**"): **npm install** (to install **dependencies**). Then: **npm run start** to start the **user interface**.
 >
 > 4 - Open your web browser (***Firefox***, ***Chrome***, etc.) then, enter: **localhost:3000**
 
