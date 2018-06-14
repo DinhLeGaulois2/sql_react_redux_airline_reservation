@@ -1,6 +1,6 @@
 'use strict';
 
-var conf = require('../MY_PRIVATE_FOLDER/config_params')
+var conf = require('../config.js')
 
 // the Object from the library ...
 var Sequelize = require('sequelize');
