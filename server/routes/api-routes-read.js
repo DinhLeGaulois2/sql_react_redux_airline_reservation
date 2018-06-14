@@ -1,6 +1,4 @@
-const Sequelize = require('sequelize');
 const models = require('../models') // DB's models
-var sequelize = models.sequelize
 const passportService = require('../services/passport');
 const passport = require('passport');
 

@@ -8,7 +8,7 @@ import { reduxForm, Field } from 'redux-form'
 class Signin extends Component {
   onSubmit = formProps => {
     this.props.signin(formProps, () => {
-      this.props.history.push('/feature');
+      this.props.history.push('/');
     });
   };
 
