@@ -49,7 +49,8 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 ## Execution
 ### You have to create a file "**config.js**" (server/config.js) to contain configuration's parameters that we want to keep secret, for now, we need
 
-```module.exports = {
+```
+module.exports = {
     secret: 'jaskj3l153450dfsdjfjk',    
     db_pwd: "Info((Jussieu[[Mias<<"
 };
