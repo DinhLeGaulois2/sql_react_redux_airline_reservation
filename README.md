@@ -49,13 +49,13 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 ## Execution
 ### You have to create a file "**config.js**" (server/config.js) to contain configuration's parameters that we want to keep secret, for now, we need
 
-```module.exports = {
+``` module.exports = {
     secret: 'jaskj3l153450dfsdjfjk',    
     db_pwd: "Info((Jussieu[[Mias<<"
 };
 
 // "secret" is the "secret" to create the "TOKEN"
-// "db_pwd" is the password for your database (that you created)```
+// "db_pwd" is the password for your database (that you created) ```
 
 > The project is build as a 3-tier architecture (fullstack), and the three parts was built to be ready to be put on different machines (which could be in different continents). So, we need to run 3 parts independently, in order: **database**, then **server** then **user interface**.
 >
