@@ -5,6 +5,7 @@
 /tmp
 /save
 /server/MY_PRIVATE_FOLDER
+/server/config.js
 /client/OldVersion
 
 # dependencies
