@@ -5,44 +5,44 @@ import requireAuth from '../../components/requireAuth';
 import actions from '../../actions/airline_reservation/reservationAction'
 import '../../style.scss'
 
-const DisplayABooking = (booking) =>
+const DisplayABooking = ({ id, bookingDate, passenger, travelClass, flight, bookingStatus, ticketType, payments, deleteBookingById }) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
         <br />
         <div className="relative">
-            <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {booking.id}</h3>
+            <h3 align="center" className="centeredChapterTitle"><b>Booking Id</b>: {id}</h3>
             <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
-                this.props.deleteBookingById(booking.id)
+                deleteBookingById(id)
             }}>X</button>
         </div>
-        <p><b>Booking Date</b>: {booking.bookingDate}</p>
+        <p><b>Booking Date</b>: {bookingDate}</p>
 
         <table style={{ 'width': '100%' }}><tbody>
             <tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px', 'borderRadius': '20px' }}>
-                <b>Client Id</b>: {booking.passenger.id}<br />
-                <b>Name</b>: {booking.passenger.firstName} {booking.passenger.lastName}<br />
-                <b>Phone</b>: {booking.passenger.phone}<br />
-                <b>Email</b>: {booking.passenger.email}<br />
-                <b>Address</b>: {booking.passenger.address}, {booking.passenger.city}, {booking.passenger.state} {booking.passenger.zipcode}, {booking.passenger.country}
+                <b>Client Id</b>: {passenger.id}<br />
+                <b>Name</b>: {passenger.firstName} {passenger.lastName}<br />
+                <b>Phone</b>: {passenger.phone}<br />
+                <b>Email</b>: {passenger.email}<br />
+                <b>Address</b>: {passenger.address}, {passenger.city}, {passenger.state} {passenger.zipcode}, {passenger.country}
             </td></tr>
         </tbody></table>
         <br />
-        <p><b>Travel Class</b>: {booking.travelClass.travelClassCode}</p>
+        <p><b>Travel Class</b>: {travelClass.travelClassCode}</p>
         <p><b>Flight</b>:</p>
         <ul>
-            <li><b>Number</b>: {booking.flight.flightNumber}</li>
-            <li><b>Destination</b>: {booking.destination}</li>
-            <li><b>Departure</b>: {booking.flight.departureTime}</li>
-            <li><b>Arrival</b>: {booking.flight.arrivalTime}</li>
-            <li><b>Aircraft</b>: {booking.flight.airplane.aircraftType}</li>
+            <li><b>Number</b>: {flight.flightNumber}</li>
+            <li><b>Destination</b>: {flight.destination}</li>
+            <li><b>Departure</b>: {flight.departureTime}</li>
+            <li><b>Arrival</b>: {flight.arrivalTime}</li>
+            <li><b>Aircraft</b>: {flight.airplane.aircraftType}</li>
         </ul>
-        <p><b>Booking Status</b>: {booking.bookingStatus.bookingStatusCode}</p>
-        <p><b>Ticket Type</b>: {booking.ticketType.ticketTypeCode}</p>
+        <p><b>Booking Status</b>: {bookingStatus.bookingStatusCode}</p>
+        <p><b>Ticket Type</b>: {ticketType.ticketTypeCode}</p>
         <p><b>Payment</b>: </p>
         <ul>
-            <li><b>Amount</b>: {booking.payments[0].paymentAmount}</li>
-            <li><b>Status</b>: {booking.payments[0].paymentStatus.paymentStatusCode}</li>
-            <li><b>Method</b>: {booking.payments[0].paymentMethod.paymentMethodCode}</li>
+            <li><b>Amount</b>: {payments[0].paymentAmount}</li>
+            <li><b>Status</b>: {payments[0].paymentStatus.paymentStatusCode}</li>
+            <li><b>Method</b>: {payments[0].paymentMethod.paymentMethodCode}</li>
         </ul>
     </td >
 
@@ -53,6 +53,8 @@ class DisplayBookingListComponent extends Component {
     }
 
     render() {
+        const { deleteBookingById } = this.props
+        
         return (
             <div>
                 {this.props.bookings.length > 0 &&
@@ -62,7 +64,7 @@ class DisplayBookingListComponent extends Component {
                                 <DisplayABooking
                                     key={booking.id}
                                     {...booking}
-                                    deleteBookingById={this.props.deleteBookingById}
+                                    deleteBookingById={deleteBookingById}
                                 />
                             </tr>
                         )}

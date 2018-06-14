@@ -89,7 +89,11 @@ const reservationAction = {
 
     deleteBookingById: (bId) => {
         return (dispatch) =>
-            axios.delete("http://localhost:3090/api/delete/booking/" + bId)
+            axios.delete("http://localhost:3090/api/delete/booking/" + bId, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(data => {
                     axios.get("http://localhost:3090/api/get/bookings", {
                     headers: {

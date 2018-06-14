@@ -5,20 +5,44 @@ import requireAuth from '../../components/requireAuth';
 
 import '../../style.scss'
 
-const DisplayAPassenger = (passenger) =>
+// class DisplayAPassenger extends React.Component {
+//     constructor(props) {
+//         super(props)
+//     }
+
+//     rendre() {
+//         const { passenger, deletePassengerById } = this.props
+//         return (
+//             <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
+//                 <div className="relative">
+//                     <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {passenger.id}</h3>
+//                     <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
+//                         e.preventDefault()
+//                         deletePassengerById(passenger.id)
+//                     }}>X</button>
+//                 </div>
+//                 <p><b>Name</b>: {passenger.firstName} {passenger.lastName}</p>
+//                 <p><b>Phone</b>: {passenger.phone}</p>
+//                 <p><b>Email</b>: {passenger.email}</p>
+//                 <p><b>Address</b>: {passenger.address}, {passenger.city}, {passenger.state} {passenger.zipcode}, {passenger.country}</p>
+//             </td>
+//         )
+//     }
+// }
+
+const DisplayAPassenger = ({ id, firstName, lastName, phone, email, address, zipcode, state, city, country, deletePassengerById }) =>
     <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
         <div className="relative">
-            <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {passenger.id}</h3>
+            <h3 align="center" className="centeredChapterTitle"><b>Client Id</b>: {id}</h3>
             <button type="button" className="btnDelete" style={{ 'backgroundColor': 'white', 'color': 'blue' }} onClick={e => {
                 e.preventDefault()
-                this.props.deleteBookingById(passenger.id)
+                deletePassengerById(id)
             }}>X</button>
         </div>
-        <p><b>Name</b>: {passenger.firstName} {passenger.lastName}</p>
-        <p><b>Phone</b>: {passenger.phone}</p>
-        <p><b>Email</b>: {passenger.email}</p>
-        <p><b>Address</b>: {passenger.address}, {passenger.city}, {passenger.state} {passenger.zipcode}, {passenger.country}</p>
-
+        <p><b>Name</b>: {firstName} {lastName}</p>
+        <p><b>Phone</b>: {phone}</p>
+        <p><b>Email</b>: {email}</p>
+        <p><b>Address</b>: {address}, {city}, {state} {zipcode}, {country}</p>
     </td>
 
 class DisplayPassengerListComponent extends React.Component {
@@ -28,6 +52,7 @@ class DisplayPassengerListComponent extends React.Component {
     }
 
     render() {
+        const { deletePassengerById } = this.props
         return (
             <div>
                 <br />
@@ -38,7 +63,7 @@ class DisplayPassengerListComponent extends React.Component {
                                 <DisplayAPassenger
                                     key={passenger.id}
                                     {...passenger}
-                                    deleteBookingById={this.props.deleteBookingById}
+                                    deletePassengerById={deletePassengerById}
                                 />
                             </tr>
                         )}
