@@ -51,8 +51,8 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 ```
 module.exports = {
-    secret: 'jaskj3l153450dfsdjfjk',    
-    db_pwd: "Info((Jussieu[[Mias<<"
+    secret: XXXXXXXXXXXXXXXXXX,    
+    db_pwd: YYYYYYYYYYYYYYYYYY
 };
 
 // "secret" is the "secret" to create the "TOKEN"
