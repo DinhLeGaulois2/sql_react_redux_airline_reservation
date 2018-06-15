@@ -76,7 +76,7 @@ At the project's root folder ([here](https://github.com/DinhLeGaulois2/sql_react
 
 ![alt text](assets/img/server_config.jpg)
 
-It's very important to follow the instruction, otherwise, you could have very disappointed surprises ...
+It's very important to follow the instruction, otherwise, you could have very disappointing surprises ...
 
 ---------------
 
