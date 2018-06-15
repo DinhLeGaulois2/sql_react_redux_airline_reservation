@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const models = require('../models') // DB's models
 var sequelize = models.sequelize
 

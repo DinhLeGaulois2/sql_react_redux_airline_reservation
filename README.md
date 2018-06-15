@@ -17,9 +17,9 @@ Front-end and Back-end could be deployed on different servers, independently. We
 
 ## Technologies
 > * **Security**: **JWT-simple**, **bcrypt-nodejs**, **passport** (**passport-jwt**, **passport-local**)
-> * **Front End**: ***React-Redux***
-> * **Back End**: ***Express/Node.js*** + ***Sequelize*** (ORM)
-> * **Database**: ***mySQL***
+> * **Front End**: **React-Redux**
+> * **Back End**: **Express/Node.js** + **Sequelize** (ORM)
+> * **Database**: **mySQL**
 
 ---------------
 
