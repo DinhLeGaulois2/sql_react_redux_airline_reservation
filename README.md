@@ -37,9 +37,6 @@ Front-end and Back-end could be deployed on different servers, independently. We
 ### List All Bookings
 ![alt text](assets/img/bookingList.jpg)
 
-### List All Passengers
-![alt text](assets/img/passengerList.jpg)
-
 ### Add New Passenger
 ![alt text](assets/img/addPassenger.jpg)
 
