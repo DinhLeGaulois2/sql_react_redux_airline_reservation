@@ -22,6 +22,7 @@ class Signup extends Component {
       : undefined
 
   render() {
+    const { handleSubmit, submitting } = this.props;
 
     return (
       <div className="container">
