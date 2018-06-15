@@ -149,7 +149,7 @@ class AddBookingComponent extends React.Component {
                                                     {ticketTypeCheck && <h3 align="center" style={{ 'backgroundColor': 'white', 'color': 'black' }}>Ticket Type Selected: <b>{this.props.data[0].ticketType[ticketTypeCheck].ticketTypeCode}</b></h3>}
                                                     <br />
                                                     {!paymentMethodCheck &&
-                                                        < table align="center" style={{ 'width': '80%' }}> <tbody><tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}><b>Payment Method</b></td></tr>
+                                                        < table align="center" style={{ 'width': '80%' }}><tbody><tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}><b>Payment Method</b></td></tr>
                                                             <tr><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px' }}>
                                                                 &nbsp;&nbsp;&nbsp;<Field name="paymentMethodIndex" component="input" type="radio" value="0" /> {this.props.data[0].paymentMethod[0].paymentMethodCode}
                                                                 <br />&nbsp;&nbsp;&nbsp;<Field name="paymentMethodIndex" component="input" type="radio" value="1" /> {this.props.data[0].paymentMethod[1].paymentMethodCode}
