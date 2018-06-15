@@ -12,17 +12,16 @@ class Signin extends Component {
     });
   };
 
-  render() {
-    const { handleSubmit, submitting } = this.props;
+  emailValidation = value =>
+    value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+      ? 'Invalid email address'
+      : undefined
+  passwordValidation = value =>
+    value && !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(value)
+      ? 'Invalid password'
+      : undefined
 
-    const emailValidation = value =>
-      value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-        ? 'Invalid email address'
-        : undefined;
-    const passwordValidation = value =>
-      value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})$/i.test(value)
-        ? 'Invalid email address'
-        : undefined
+  render() {
 
     return (
       <div className="container">
