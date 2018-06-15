@@ -32,14 +32,14 @@ class Signin extends Component {
             name="email"
             component={renderInputField}
             placeholder="Email"
-            validate={emailValidation}
+            validate={this.emailValidation}
           />
           <Field
             name="password"
             type="password"
             component={renderInputField}
             placeholder="Password"
-            validate={passwordValidation}
+            validate={this.passwordValidation}
           />
           <div>{this.props.errorMessage}</div><br/>
           <button type="submit" disabled={submitting}>Sign In!</button>
