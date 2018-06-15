@@ -32,7 +32,7 @@ class Signup extends Component {
             name="email"
             component={renderInputField}
             placeholder="Email"
-            validate={emailValidation}
+            validate={this.emailValidation}
           />
           (Email must be unique: i.e. never been registered before)
           <Field
@@ -40,7 +40,7 @@ class Signup extends Component {
             type="password"
             component={renderInputField}
             placeholder="Password"
-            validate={passwordValidation}
+            validate={this.passwordValidation}
           />
           (At least 8 characters with - at least - 1 uppercase, 1 lowercase and 1 numeric character)
           <div>{this.props.errorMessage}</div><br />
