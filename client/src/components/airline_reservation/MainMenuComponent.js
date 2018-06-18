@@ -4,8 +4,8 @@ import requireAuth from '../requireAuth'
 import '../HeaderStyle.css';
 import '../../style.scss'
 
-import AddUIComponent from '../../components/airline_reservation/AddUIComponent'
-import DisplayUIComponent from '../../components/airline_reservation/DisplayUIComponent'
+import AddUIComponent from './AddUIComponent'
+import DisplayUIComponent from './DisplayUIComponent'
 
 const MainMenuComponent = ({ match }) =>
     <div>

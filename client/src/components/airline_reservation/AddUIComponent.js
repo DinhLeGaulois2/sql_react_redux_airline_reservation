@@ -3,8 +3,8 @@ import requireAuth from '../requireAuth'
 import { Route, NavLink } from "react-router-dom";
 import '../HeaderStyle.css';
 
-import AddBookingComponent from '../../components/airline_reservation/AddBookingComponent'
-import AddPassengerComponent from '../../components/airline_reservation/AddPassengerComponent'
+import AddBookingComponent from './AddBookingComponent'
+import AddPassengerComponent from './AddPassengerComponent'
 
 class AddUIComponent extends React.Component {
     render() {

@@ -3,8 +3,8 @@ import { Route, NavLink } from "react-router-dom";
 import requireAuth from '../requireAuth'
 import '../HeaderStyle.css';
 
-import DisplayBookingListComponent from '../../components/airline_reservation/DisplayBookingListComponent'
-import DisplayPassengerListComponent from '../../components/airline_reservation/DisplayPassengerListComponent'
+import DisplayBookingListComponent from './DisplayBookingListComponent'
+import DisplayPassengerListComponent from './DisplayPassengerListComponent'
 
 class DisplayUIComponent extends React.Component {
     render() {
