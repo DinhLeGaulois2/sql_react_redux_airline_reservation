@@ -8,7 +8,7 @@ class Header extends Component {
     if (this.props.authenticated) {
       return (
         <div>
-          <NavLink to="/mainMenu" className="navLink" strict activeStyle={{ color: 'blue' }}>Booking</NavLink>
+          <NavLink to="/mainMenu" className="navLink" strict activeStyle={{ color: 'blue' }}>Go!</NavLink>
           <NavLink to="/signout" className="navLink" strict activeStyle={{ color: 'blue' }}>Sign Out</NavLink>
         </div>
       );
@@ -25,7 +25,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header" style={{ "backgroundColor": "black" }}>
-        <span style={{ color: "black", backgroundColor: "white", fontSize: "1.5em", padding: '0px 10px', fontWeight: "bold" }}>Flight Reservation</span>
+        <span style={{ color: "black", backgroundColor: "white", fontSize: "1.5em", padding: '0px 10px', fontWeight: "bold" }}>Job Organizer</span>
 
         {this.renderNavLinks()}
       </div>
