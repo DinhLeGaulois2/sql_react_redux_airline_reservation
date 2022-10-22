@@ -81,5 +81,4 @@ It's very important to follow the instruction, otherwise, you could have very di
 ---------------
 
 ## Author
-* Dinh HUYNH - All Rights Reserved!
-* dinh.hu19@yahoo.com
+* Dinh HUYNH
